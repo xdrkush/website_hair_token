@@ -123,8 +123,8 @@ export const INFURA_URL = `https://mainnet.infura.io/v3/${INFURA_API_KEY}`;
 export const ETHERSCAN_API_KEY = import.meta.env.VITE_ETHERSCAN_API_KEY;
 
 // RPC URLs from environment variables
-export const HEMI_MAINNET_RPC = 'https://rpc.hemi.network/rpc';
-export const HEMI_TESTNET_RPC = 'https://testnet.rpc.hemi.network/rpc';
+export const HEMI_MAINNET_RPC = import.meta.env.VITE_HEMI_MAINNET_RPC || 'https://rpc.hemi.network/rpc';
+export const HEMI_TESTNET_RPC = import.meta.env.VITE_HEMI_TESTNET_RPC || 'https://testnet.rpc.hemi.network/rpc';
 
 // Token addresses from environment variables
 export const HAIR_TOKEN_MAINNET = '0x5B774f563C902FA7b203FB7029ed6eD4Ce274705';

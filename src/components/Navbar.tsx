@@ -12,13 +12,12 @@ import {
   MenuItem,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import useWalletContext from '../contexts/WalletContext';
 import { useThemeContext } from '../contexts/ThemeContext';
-import { formatAddress } from '../lib/utils';
 import hairLogo from '../assets/logo_hair_no_bg.png';
+import hairLogoJpeg from '../assets/logo.jpeg';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 const pages = [
   { name: 'Home', href: '/' },
@@ -31,13 +30,6 @@ const pages = [
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
-  const { 
-    isConnected, 
-    address, 
-    connectWallet, 
-    disconnectWallet,
-    isLoading,
-  } = useWalletContext();
   const { mode, toggleTheme } = useThemeContext();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -46,14 +38,6 @@ const Navbar = () => {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-  };
-
-  const handleWalletAction = async () => {
-    if (isConnected) {
-      disconnectWallet();
-    } else {
-      await connectWallet();
-    }
   };
 
   const handleNavClick = (href: string) => {
@@ -176,30 +160,46 @@ const Navbar = () => {
                   <Typography textAlign="center">{page.name}</Typography>
                 </MenuItem>
               ))}
+              {/* Theme Toggle in Mobile Menu */}
+              <MenuItem 
+                onClick={toggleTheme}
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 1,
+                }}
+              >
+                {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+                <Typography textAlign="center">
+                  {mode === 'dark' ? 'Light Mode' : 'Dark Mode'}
+                </Typography>
+              </MenuItem>
             </Menu>
           </Box>
 
           {/* Logo - Mobile */}
-          <Typography
-            variant="h5"
-            noWrap
-            component={RouterLink}
-            to="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontWeight: 700,
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            <img
-              src={hairLogo}
-              alt="Logo"
-              style={{ height: '42px', width: 'auto' }}
-            />
-          </Typography>
+          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+            <Typography
+              variant="h5"
+              noWrap
+              component={RouterLink}
+              to="/"
+              sx={{
+                mr: 2,
+                display: { xs: 'flex', md: 'none' },
+                flexGrow: 1,
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              <img
+                src={hairLogoJpeg}
+                alt="Logo"
+                style={{ height: '38px', width: 'auto', zIndex: 1000 }}
+              />
+            </Typography>
+          </Box>
 
           {/* Desktop Navigation */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
@@ -224,8 +224,8 @@ const Navbar = () => {
             ))}
           </Box>
 
-          {/* Theme Toggle Button */}
-          <Box sx={{ display: 'flex', alignItems: 'center', mr: 2 }}>
+          {/* Theme Toggle Button - Desktop Only */}
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', mr: 2 }}>
             <IconButton 
               onClick={toggleTheme} 
               color="inherit"
@@ -240,25 +240,16 @@ const Navbar = () => {
             </IconButton>
           </Box>
 
-          {/* Connect Wallet Button */}
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Button
-              variant="contained"
-              startIcon={<AccountBalanceWalletIcon />}
-              onClick={handleWalletAction}
-              disabled={isLoading}
-              sx={{
-                backgroundColor: isConnected ? 'success.main' : 'primary.main',
-                color: 'white',
-                '&:hover': {
-                  backgroundColor: isConnected ? 'success.dark' : 'primary.dark',
-                },
-                px: 3,
-                py: 1,
-              }}
-            >
-              {isLoading ? 'Connecting...' : isConnected ? formatAddress(address) : 'Connect Wallet'}
-            </Button>
+          {/* Custom RainbowKit Connect Button */}
+          <Box sx={{ maxHeight: '32px', display: 'flex', alignItems: 'center' }}>
+              <ConnectButton
+                chainStatus="icon"
+                showBalance={false}
+                accountStatus={{
+                  smallScreen: 'avatar',
+                  largeScreen: 'full',
+                }}
+              />
           </Box>
         </Toolbar>
       </Container>
@@ -266,4 +257,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar; 
+export default Navbar;
