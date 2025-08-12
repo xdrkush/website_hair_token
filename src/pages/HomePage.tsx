@@ -1033,7 +1033,7 @@ const HomePage = () => {
 
               {/* Discord Button */}
               <Link 
-                href="https://discord.gg/hairmaxtoken" 
+                href="https://discord.gg/xeeVpy7Whk" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 sx={{ textDecoration: 'none' }}
@@ -1250,7 +1250,7 @@ const HomePage = () => {
                   Twitter / X
                 </Link>
                 <Link 
-                  href="https://discord.gg/hairmaxtoken" 
+                  href="https://discord.gg/xeeVpy7Whk" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   sx={{ color: 'text.secondary', textDecoration: 'none', '&:hover': { color: 'primary.main' } }}
