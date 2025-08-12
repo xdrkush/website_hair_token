@@ -269,7 +269,7 @@ export const APP_CONFIG: AppConfig = {
   social: {
     twitter: 'https://x.com/HairMaxToken',
     telegram: 'https://t.me/hairmaxtoken',
-    discord: 'https://discord.gg/hairmaxtoken',
+    discord: 'https://discord.gg/xeeVpy7Whk',
   },
   links: {
     docs: 'https://usdhair-max.gitbook.io/hairmaxtoken',

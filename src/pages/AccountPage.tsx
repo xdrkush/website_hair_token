@@ -491,7 +491,7 @@ export default function AccountPage() {
                   </Box>
                   <Box>
                     <Typography variant="body2">
-                      <strong>Total Supply:</strong> 1,000,000,000 HAIR
+                      <strong>Total Supply:</strong> 10,000,000,000 HAIR
                     </Typography>
                   </Box>
                 </Box>
@@ -582,7 +582,7 @@ export default function AccountPage() {
                   </Box>
                   <Box>
                     <Typography variant="body2">
-                      <strong>Total Supply:</strong> 1,000,000,000 HAIR
+                      <strong>Total Supply:</strong> 10,000,000,000 HAIR
                     </Typography>
                   </Box>
                 </Box>
